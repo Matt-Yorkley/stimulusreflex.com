@@ -1,10 +1,430 @@
-<div class="font-sans bg-white h-screen flex flex-col w-full">
-  <div class="h-screen bg-transparent bg-gradient-to-r from-green-400 to-blue-500">
-    <div class="px-4 py-48">
-     <div class="relative w-full text-center">
-       <h1 class="pulsing-text">StimulusReflex</h1>
-       <button class="btn" data-reflex="click->Test#test"><i class="fas fa-bug"></i> Console Log Test</button>
+<div class="h-full font-sans text-lg font-medium leading-8 tracking-tighter text-gray-800 bg-white">
+  <section>
+    <div class="container flex justify-between pl-0 mx-auto mb-10">
+      <%= link_to root_path do %>
+        <%= image_tag "logo.svg" %>
+      <% end %>
+      <nav class="flex items-center space-x-2">
+        <a href="https://github.com/stimulusreflex/stimulus_reflex" class="items-center hidden text-purple-600 border-2 border-purple-300 rounded-lg sm:flex hover:text-purple-500">
+          <span class="p-1.5 pr-2">
+            <%= image_tag "github_logo.svg" %>
+          </span>
+          <span class="flex items-center pl-2 border-l-2 border-purple-300">
+            <i class="text-sm fas fa-star"></i>
+            <span
+              class="px-4 py-1 pl-2 text-lg font-semibold"
+              data-controller="github-stars"
+              data-github-stars-target="starCount"
+              data-github-stars-star-count-value=""
+            ></span>
+          </span>
+        </a>
+        <a
+          href="https://docs.stimulusreflex.com/"
+          class="inline-block px-4 py-1 text-lg font-semibold text-purple-600 bg-purple-300 border-2 border-purple-300 border-purple-400 rounded-lg hover:text-purple-500 hover:bg-purple-200"
+        >
+          Documentations
+        </a>
+      </nav>
     </div>
-   </div>
+    <div class="container relative mx-auto">
+      <%= image_tag "request_cycle.svg", class: "absolute right-0 hidden xs:block w-5/12 md:w-40 sm:w-60 md:w-60 lg:w-max" %>
+      <h1 class="mb-4 text-5xl font-semibold leading-snug text-purple-600 break-words md:pt-20 sm:leading-20 sm:text-7xl tracking-tightest">
+        Return to<br class="inline md:hidden" /> the<br class="hidden md:inline" />
+        Golden<br class="inline md:hidden" /> Era of<br class="hidden md:inline" />
+        Web<br class="inline md:hidden" /> Development
+      </h1>
+      <h2 class="mb-6 text-2xl leading-8">
+        Build reactive apps with a<br />
+        server-rendered architecture.
+      </h2>
+      <a href="https://docs.stimulusreflex.com/" class="inline-block px-6 py-4 mb-12 text-2xl font-semibold text-purple-300 bg-purple-600 rounded-lg hover:text-purple-200 hover:bg-purple-500">Free Britney Now!</a>
+      <%= image_tag "icons/chevron_down", class: "mb-16" %>
+    </div>
+  </section>
+
+  <div class="grid-container">
+    <div class="col-start-2 col-end-4 row-start-1 mb-4 sm:col-end-3 sm:row-span-2">
+      <p>
+        StimulusReflex is an implementation for classic Rails architecture: Server sends a whole HTML to the browser, the browser displays it as is, JS listens to user’s input, notifies about them the server (Stimulus), server reacts on them appropriately and responds with a new page, or a piece of page to be rerendered (Reflex).
+      </p>
+    </div>
+    <div class="col-start-2 col-end-4 row-start-2 sm:row-start-1 sm:col-start-3 justify-self-center">
+      <%= image_tag "stimulus_cycle", class: "xs:mr-6 sm:mr-0" %>
+    </div>
+    <div class="row-start-3 bg-gray-50 col-span-full"></div>
+    <div class="col-start-2 row-start-3">
+      <h2 class="self-end mt-8 mb-4 text-5xl font-semibold leading-snug text-purple-600 sm:leading-20 sm:text-7xl tracking-tightest">
+        Better DX
+      </h2>
+    </div>
+    <div class="flex items-end justify-center col-start-3 row-start-2 row-end-5 pl-4 sm:row-start-2 sm:row-end-4">
+      <%= image_tag "beast_with_laptop" %>
+    </div>
   </div>
+
+  <section class="pt-4 bg-gray-50">
+    <div class="container mx-auto">
+      <div data-controller="code" class="relative mb-12 overflow-hidden leading-6 tracking-normal bg-gray-800 rounded-3xl">
+        <%= image_tag "icons/copy", class: "absolute top-4 right-4 z-30 hover:mix-blend-screen cursor-copy", "data-action": "click->code#copy" %>
+        <pre class="px-8 py-6 overflow-x-auto"><!--
+          --><code
+            class="relative block pr-8 w-max highlight stimulus_reflex"
+          ><!--
+            --><div class="hidden" data-code-target="code"><%= render "code_sample" %></div><!--
+            --><%= render "code_sample", language: :ruby, colorscheme: "github" %><!--
+          --></code><!--
+          --><div class="absolute top-0 bottom-0 right-0 pointer-events-none bg-gradient-to-r from-transparent to-gray-800 w-14"></div><!--
+        --></pre>
+        </div>
+      <h3 class="mb-4 text-3xl font-semibold">
+        Write less code
+      </h3>
+      <div class="grid grid-cols-1 gap-4 mb-20 md:grid-cols-3">
+        <div>
+          <h4 class="font-semibold">Server is the single source of truth</h4>
+          <p>
+            All state is maintained by the server. Any updated view content is automatically morphed on the client. No need for duplicating business logic on front-end side and keeping it synced with the server.
+          </p>
+        </div>
+        <div>
+          <h4 class="font-semibold">Only one language is required</h4>
+          <p>
+            StimulusReflex uses Ruby. A stable, well-maintained, robust language. Front-end side uses HTML and lightweight JavaScript generated by the server. JavaScript only monitors user inputs and notifies the server.
+          </p>
+        </div>
+        <div>
+          <h4 class="font-semibold">Send HTML to the web browser</h4>
+          <p>
+            Server composing a whole page code as HTML. No need for reimplementing basic web functionality in JavaScript.
+          </p>
+        </div>
+        <a href="https://docs.stimulusreflex.com/" class="flex items-center justify-between px-6 py-4 pr-5 mt-4 font-semibold text-purple-600 border-2 border-purple-300 md:col-span-2 md:col-start-2 rounded-3xl hover:text-purple-500 hover:border-purple-400">
+          See how to start to develop with StimulusReflex
+          <%= image_tag "icons/arrow_circle_right" %>
+        </a>
+      </div>
+      <h3 class="mb-4 text-3xl font-semibold">
+        Faster development
+      </h3>
+      <div class="grid grid-cols-1 gap-4 mb-20 md:grid-cols-3">
+        <div>
+          <h4 class="font-semibold">Tiny peripherals</h4>
+          <p>
+            You need only Redis or another DB. No GraphQL, Apollo, Redux, and other moving parts.
+          </p>
+        </div>
+        <div>
+          <h4 class="font-semibold">Well documented, 24/7 support</h4>
+          <p>
+            StimulusReflex is extremely well documented with current samples. Use Discord community for any additional questions.
+          </p>
+        </div>
+        <div class="md:row-span-2">
+          <h4 class="font-semibold">No inter-team syncranizations</h4>
+          <p>
+            Smaller team is needed. Since no logic is implemented on the front-end side, the front end teem is much smaller and does pretty isolated tasks. One person can confidently implement and deploy a complex feature.
+          </p>
+        </div>
+        <a href="https://discord.gg/stimulus-reflex" class="flex items-center col-start-1 px-4 py-4 pr-5 space-x-4 font-semibold text-purple-600 border-2 border-purple-300 md:col-span-2 rounded-3xl hover:text-purple-500 hover:border-purple-400">
+          <%= image_tag "icons/discord" %>
+          <span class="flex items-center justify-between flex-grow">
+            Ask a question in Discord Community
+            <%= image_tag "icons/arrow_circle_right" %>
+          </span>
+        </a>
+      </div>
+      <h3 class="mb-4 text-3xl font-semibold">
+        Scalability
+      </h3>
+      <div class="grid grid-cols-1 gap-4 mb-20 md:grid-cols-3">
+        <%= image_tag "action_cable", class: "self-center col-start-1" %>
+        <div class="mb-4">
+          <h4 class="font-semibold">ActionCable</h4>
+          <p>
+            For playground projects, use ActionCable – a default Rails module which is easy to start with.
+          </p>
+        </div>
+        <%= image_tag "any_cable", class: "self-center -mb-2 md:row-start-1 md:col-start-2" %>
+        <div class="mb-4">
+          <h4 class="font-semibold">AnyCable</h4>
+          <p>
+            For production ready projects, use AnyCable. It outperforms ActionCable and gives you a real Real-time.
+          </p>
+        </div>
+        <%= image_tag "any_cable_pro", class: "self-center md:row-start-1 md:col-start-3" %>
+        <div class="mb-4">
+          <h4 class="font-semibold">AnyCable Pro</h4>
+          <p>
+            For high-loaded projects, use AnyCable Pro. It reduces memory usage, saves bandwidth and gives priority support by the developers.
+          </p>
+        </div>
+        <a href="https://anycable.io/" class="flex items-center justify-between px-6 py-4 pr-5 font-semibold text-purple-600 border-2 border-purple-300 md:col-start-2 md:col-span-2 rounded-3xl hover:text-purple-500 hover:border-purple-400">
+          Read more about AnyCable
+          <%= image_tag "icons/arrow_circle_right" %>
+        </a>
+      </div>
+      <h3 class="mb-6 text-3xl font-semibold">
+        Hot questions
+      </h3>
+      <div class="flex flex-col items-start mb-4 sm:flex-row">
+        <span class="px-6 py-4 pb-6 mr-4 bg-gray-200 sm:-mr-2 sm:py-4 rounded-3xl">I’m working on a mature web app using React. Can I easily migrate to StimulusReflex?</span>
+        <span class="px-6 py-4 ml-4 -mt-4 bg-purple-300 sm:mt-4 sm:-ml-2 rounded-3xl">Unfortunately, you need to rewrite it. But you’ll reuse most of the code pieces.</span>
+      </div>
+      <div class="flex flex-col items-start mb-8 ml-20 sm:flex-row">
+        <span class="px-6 py-4 pb-6 mr-4 bg-gray-200 sm:-mr-2 sm:py-4 rounded-3xl">I’m developing a real-time application with lots of interactions. Is StimulusReflex a good replacement for React?</span>
+        <span class="px-6 py-4 ml-4 -mt-4 bg-purple-300 sm:mt-4 sm:-ml-2 rounded-3xl">Sure it is! Use AnyCable library to get real-time updates.</span>
+      </div>
+      <div class="flex flex-col items-start ml-8 sm:flex-row">
+        <span class="px-6 py-4 pb-6 mr-4 bg-gray-200 sm:-mr-2 sm:py-4 rounded-3xl">My app is mobile first. Can I write is using StimulusReflex?</span>
+        <span class="px-6 py-4 ml-4 -mt-4 bg-purple-300 sm:mt-4 sm:-ml-2 rounded-3xl">Yes, you can. StimulusReflex supports native mobile platforms.</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="grid-container">
+    <div class="h-20 row-start-1 bg-gray-50 col-span-full"></div>
+    <div class="col-start-2 row-start-2">
+      <h2 class="mt-8 mb-8 text-5xl font-semibold leading-snug text-purple-600 sm:leading-20 sm:text-7xl tracking-tightest">
+        Better UX
+      </h2>
+    </div>
+    <div class="col-start-2 col-end-4 row-start-3 sm:col-end-3">
+      <h3 class="mb-4 text-3xl font-semibold">
+        Faster page loading and update
+      </h3>
+    </div>
+    <div class="col-start-3 row-start-1 row-end-3 pt-4 pl-4 sm:row-end-4 justify-self-center">
+      <%= image_tag "beast_with_ice_cream" %>
+    </div>
+  </div>
+
+  <section class="pb-20">
+    <div class="container mx-auto">
+      <div class="grid grid-cols-1 gap-4 mb-20 md:grid-cols-3">
+        <div>
+          <h4 class="font-semibold">Pages load with no delay</h4>
+          <p>
+            HTML is rendered immediately by the browser, no intermediate JSON parsing.
+          </p>
+        </div>
+        <div>
+          <h4 class="font-semibold">Faster response</h4>
+          <p>
+            Round-trip actions and updates typically occur in 10-25ms, depending on geography.
+          </p>
+        </div>
+        <div>
+          <h4 class="font-semibold">Mobile devices support</h4>
+          <p>
+            Works greate on any, even the oldest ones, modile devices.
+          </p>
+        </div>
+        <a href="http://expo.stimulusreflex.com/" class="flex items-center justify-between px-6 py-4 pr-5 mt-4 font-semibold text-purple-600 border-2 border-purple-300 md:col-span-2 rounded-3xl hover:text-purple-500 hover:border-purple-400">
+          See demo
+          <%= image_tag "icons/arrow_circle_right" %>
+        </a>
+      </div>
+      <h3 class="mb-4 text-3xl font-semibold">
+        Saving traffic and battery
+      </h3>
+      <div class="grid grid-cols-1 gap-4 mb-20 md:grid-cols-3">
+        <div>
+          <h4 class="font-semibold">Tiny bundle size</h4>
+          <p>
+            Front-end part of the app is 10x smaller than while using React.
+          </p>
+        </div>
+        <div>
+          <h4 class="font-semibold">Less traffic per interaction</h4>
+          <p>
+            Client sends light-weight notifications. Data transferring is well-optimized.
+          </p>
+        </div>
+        <div>
+          <h4 class="font-semibold">Low battery usage</h4>
+          <p>
+            Very little CPU activity when serving HTML content to a browser save battery from draining.
+          </p>
+        </div>
+        <a href="https://docs.stimulusreflex.com/#build-the-next-twitter-in-just-9-minutes-or-less" class="flex items-center px-4 py-4 pr-5 space-x-4 font-semibold text-purple-600 border-2 border-purple-300 md:col-start-2 md:col-span-2 rounded-3xl hover:text-purple-500 hover:border-purple-400">
+          <%= image_tag "icons/play" %>
+          <span class="flex items-center justify-between flex-grow">
+            See video
+            <%= image_tag "icons/arrow_circle_right" %>
+          </span>
+        </a>
+      </div>
+      <h3 class="mb-6 text-3xl font-semibold">
+        Hot questions
+      </h3>
+      <div class="flex flex-col items-start mb-4 sm:flex-row">
+        <span class="px-6 py-4 pb-6 mr-4 bg-gray-200 sm:-mr-2 sm:py-4 rounded-3xl">I’m working on a mature web app using React. Can I easily migrate to StimulusReflex?</span>
+        <span class="px-6 py-4 ml-4 -mt-4 bg-purple-300 sm:mt-4 sm:-ml-2 rounded-3xl">Unfortunately, you need to rewrite it. But you’ll reuse most of the code pieces.</span>
+      </div>
+      <div class="flex flex-col items-start mb-8 ml-20 sm:flex-row">
+        <span class="px-6 py-4 pb-6 mr-4 bg-gray-200 sm:-mr-2 sm:py-4 rounded-3xl">I’m developing a real-time application with lots of interactions. Is StimulusReflex a good replacement for React?</span>
+        <span class="px-6 py-4 ml-4 -mt-4 bg-purple-300 sm:mt-4 sm:-ml-2 rounded-3xl">Sure it is! Use AnyCable library to get real-time updates.</span>
+      </div>
+      <div class="flex flex-col items-start ml-8 sm:flex-row">
+        <span class="px-6 py-4 pb-6 mr-4 bg-gray-200 sm:-mr-2 sm:py-4 rounded-3xl">My app is mobile first. Can I write is using StimulusReflex?</span>
+        <span class="px-6 py-4 ml-4 -mt-4 bg-purple-300 sm:mt-4 sm:-ml-2 rounded-3xl">Yes, you can. StimulusReflex supports native mobile platforms.</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="pt-8 pb-20 mb-8 bg-gray-50">
+    <div class="container mx-auto">
+      <h2 class="mb-8 text-5xl font-semibold leading-snug text-purple-600 sm:leading-20 sm:text-7xl tracking-tightest">
+        Cost Saving
+      </h2>
+      <h3 class="mb-4 text-3xl font-semibold">
+        Smaller team doing more
+      </h3>
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
+        <div>
+          <h4 class="font-semibold">No need for high-skilled front-end</h4>
+          <p>
+            One full stack Rails developer can build a single codebase that serves web and native mobile.
+          </p>
+        </div>
+        <div>
+          <h4 class="font-semibold">Launch in days, not months</h4>
+          <p>
+            Less inter-team communication causes less delay and time to make an agreement.
+          </p>
+        </div>
+        <div>
+          <h4 class="font-semibold">Easy learning curve</h4>
+          <p>
+            Good documentations allow quick start and speeds up the development.
+          </p>
+        </div>
+        <span class="col-span-full">
+          <a href="https://docs.stimulusreflex.com/" class="flex items-center justify-between px-6 py-4 pr-5 mx-auto mt-4 font-semibold text-purple-600 border-2 border-purple-300 md:w-2/3 rounded-3xl hover:text-purple-500 hover:border-purple-400">
+            See how to start to develop with StimulusReflex
+            <%= image_tag "icons/arrow_circle_right" %>
+          </a>
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container mx-auto">
+      <div class="grid grid-cols-1 gap-4 mb-20 md:grid-cols-3">
+        <div class="md:row-span-3">
+          <%= image_tag "cable_ready_logo", class: "mx-auto" %>
+        </div>
+        <div class="md:col-span-2">
+          <h3 class="mt-4 text-3xl font-semibold">
+            CableReady is ready to serve
+          </h3>
+        </div>
+        <div class="md:col-start-2">
+          <h4 class="font-semibold">Launch in days, not months</h4>
+          <p>
+            Less inter-team communication causes less delay and time to make an agreement.
+          </p>
+        </div>
+        <div>
+          <h4 class="font-semibold">Easy learning curve</h4>
+          <p>
+            Good documentations allow quick start and speeds up the development.
+          </p>
+        </div>
+        <a href="https://cableready.stimulusreflex.com/" class="flex items-center justify-between px-6 py-4 pr-5 mt-4 font-semibold text-purple-600 border-2 border-purple-300 md:col-start-2 md:col-span-2 rounded-3xl hover:text-purple-500 hover:border-purple-400">
+          Read more about CableReady
+          <%= image_tag "icons/arrow_circle_right" %>
+        </a>
+      </div>
+      <div class="relative grid items-start grid-cols-1 gap-4 -mt-64 md:grid-cols-3 top-64">
+        <div class="p-8 bg-white shadow-lg md:mt-10 rounded-3xl">
+          <p>
+            More responsive screens, simpler code, amazing support.
+          </p>
+          <div class="flex items-center mt-6 space-x-4">
+            <%= image_tag "people/andrew_cetinic.jpg" %>
+            <span>
+              <span class="inline-block text-purple-600">Andrew Cetinic</span><br />
+              <span class="inline-block">CEO, <span class="text-purple-600">PeopleForce</span></span>
+            </span>
+          </div>
+        </div>
+        <div class="p-8 bg-white shadow-lg md:mt-20 rounded-3xl">
+          <p>
+            What matters is your productivity and how much you enjoy working with a library. I found myself very productive, and I really enjoyed it.
+          </p>
+          <div class="flex items-center mt-6 space-x-4">
+            <%= image_tag "people/sam_sweeney.jpg" %>
+            <span>
+              <span class="inline-block text-purple-600">Sam Sweeney</span><br />
+              <span class="inline-block">CEO, <span class="text-purple-600">Trivvy</span></span>
+            </span>
+          </div>
+        </div>
+        <div class="p-8 bg-white shadow-lg rounded-3xl">
+          <p>
+            SR saved my day, my (chunky) bacon, my sanity, my dignity, and who knows what else! What a time to be alive!
+          </p>
+          <div class="flex items-center mt-6 space-x-4">
+            <%= image_tag "people/trinity_takei.jpg" %>
+            <span>
+              <span class="inline-block text-purple-600">Trinity Takei</span><br />
+              <span class="inline-block">Lead Developer, <span class="text-purple-600">RCRDSHP</span></span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pb-20 pt-14 bg-gray-50">
+    <div class="container mx-auto">
+      <h3 class="mt-64 mb-4 text-3xl font-semibold">
+        There are a few cases when StimulusReflex is not the best option
+      </h3>
+      <div class="grid grid-cols-1 gap-4 mb-20 md:grid-cols-3">
+        <div>
+          <h4 class="font-semibold">Offline first</h4>
+          <p>
+            If your application should work in offline mode, stick with React approach.
+          </p>
+        </div>
+        <div>
+          <h4 class="font-semibold">Games, 3D, AR/VR</h4>
+          <p>
+            Games and other highly interactive apps are not best fit to StimulusReflex.
+          </p>
+        </div>
+        <div>
+          <h4 class="font-semibold">Your team is mainly front-end</h4>
+          <p>
+            JS devs may find it hard to learn Rails.
+          </p>
+        </div>
+      </div>
+      <h3 class="mb-6 text-3xl font-semibold">
+        Subscribe for updates
+      </h3>
+      <%= form_with url: "#", method: :post, class: "mb-20 relative rounded-3xl" do |form| %>
+        <%= form.text_field :email, class: "w-full p-6 pr-16 border-0 bg-transparent placeholder-gray-500 font-medium ring-gray-500 rounded-3xl ring-2 focus:ring-2 focus:ring-purple-600", placeholder: "Your email" %>
+        <%= form.submit "Submit", type: :image, src: image_path("icons/arrow_circle_right"), class: "absolute pl-4 pr-6 right-0 top-1/2 -translate-y-1/2" %>
+      <% end %>
+
+      <hr class="mb-20 border-t-2 border-gray-300" />
+
+      <div class="flex flex-col justify-between md:flex-row">
+        <span>
+          © StimulusReflex, <%= Time.zone.now.year %>
+        </span>
+        <span class="flex flex-col md:flex-row">
+          <a href="https://github.com/stimulusreflex/stimulus_reflex" class="mr-4 text-purple-600 hover:text-purple-500">GitHub</a>
+          <a href="https://docs.stimulusreflex.com/" class="mr-4 text-purple-600 hover:text-purple-500">Documentation</a>
+          <a href="https://cableready.stimulusreflex.com/" class="mr-4 text-purple-600 hover:text-purple-500">CableReady</a>
+          <a href="https://anycable.io/" class="mr-4 text-purple-600 hover:text-purple-500">AnyCable</a>
+        </span>
+      </div>
+    </div>
+  </section>
 </div>
