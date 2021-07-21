@@ -1,10 +1,12 @@
 import 'stylesheets/application.scss'
 
 import Rails, { CableCar } from 'mrujs'
-import Turbolinks from 'turbolinks'
+import * as Turbo from '@hotwired/turbo'
 import CableReady from 'cable_ready'
-import AudioOperations from '@cable_ready/audio_operations'
+// import AudioOperations from '@cable_ready/audio_operations'
 import '@fortawesome/fontawesome-free/js/solid'
+
+window.Turbo = Turbo
 
 import 'channels'
 import 'controllers'
@@ -15,5 +17,4 @@ const images = require.context('../images', true)
 Rails.start({
   plugins: [new CableCar(CableReady)]
 })
-Turbolinks.start()
-CableReady.addOperations(AudioOperations)
+// CableReady.addOperations(AudioOperations)

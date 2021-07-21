@@ -28,7 +28,7 @@ group :test do
   gem "webdrivers"
 end
 
-gem "stimulus_reflex", "3.5.0.pre1"
+gem "stimulus_reflex", "3.5.0.pre2"
 gem "pagy", "~> 3.10.0"
 gem "faker", "~> 2.16"
 gem "pg_search", "~> 2.3"
