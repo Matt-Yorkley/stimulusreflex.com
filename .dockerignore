@@ -1,0 +1,10 @@
+.git
+.dockerignore
+Procfile*
+config/master.key
+config/credentials.yml.enc
+.byebug_history
+log/*
+tmp/*
+public/packs
+public/packs-test

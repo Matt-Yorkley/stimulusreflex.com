@@ -2,6 +2,10 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  host: <%= ENV.fetch("DB_HOST", nil) %>
+  port: <%= ENV.fetch("DB_PORT", 5432) %>
+  username: <%= ENV.fetch("DB_USER", nil) %>
+  password: <%= ENV.fetch("DB_PASSWORD", nil) %>
 
 development:
   <<: *default
@@ -14,5 +18,3 @@ test:
 production:
   <<: *default
   database: stimulusreflexcom_production
-  username: stimulusreflexcom
-  password: <%= ENV['STIMULUSREFLEX_DATABASE_PASSWORD'] %>
