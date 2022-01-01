@@ -31,5 +31,7 @@ module StimulusreflexCom
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    config.hosts << ENV.fetch("APP_HOST", "0.0.0.0")
   end
 end
