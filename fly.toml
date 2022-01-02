@@ -21,6 +21,10 @@ processes = []
 [deploy]
   release_command = "sh /rails/bin/fly-deploy"
 
+[[statics]]
+  guest_path = "/rails/public/packs"
+  url_prefix = "/packs"
+
 [experimental]
   allowed_public_ports = []
   auto_rollback = true
