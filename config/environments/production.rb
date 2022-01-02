@@ -23,11 +23,13 @@ Rails.application.configure do
       expire_after: 1.year,
       ttl: 1.year,
       key_prefix: "stimulusreflex:session:",
-      url: ENV.fetch("REDIS_URL") { "redis://localhost:6379/1" }
+      url: "redis://#{ENV['FLY_REGION']}.#{ENV['REDIS_HOST']}/1"
     }
   }
 
-  config.cache_store = :redis_cache_store, {url: ENV.fetch("REDIS_URL") { "redis://localhost:6379/1" }}
+  config.cache_store = :redis_cache_store, {
+    url: "redis://#{ENV['FLY_REGION']}.#{ENV['REDIS_HOST']}/1"
+  }
 
   # Ensures that a master key has been made available in either ENV["RAILS_MASTER_KEY"]
   # or in config/master.key. This key is used to decrypt credentials (and other encrypted files).
